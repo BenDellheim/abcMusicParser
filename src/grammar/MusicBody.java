@@ -18,7 +18,10 @@ public class MusicBody {
 	private void parseBars(ArrayList<String> contents)
 	{
 		for (int i=0; i < contents.size(); i++) {
+			// Split bars on the "|" character.
 			String tmp[] = contents.get(i).split("\\|");
+			
+			//Add the new bars to our list
 			for(String b : tmp) {
 				bars.add(b);
 			}			

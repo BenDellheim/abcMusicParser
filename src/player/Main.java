@@ -27,14 +27,12 @@ public class Main {
 	 * System.exit()</p>
 	 * 
 	 * @param file the name of input abc file
-	 * @return 
 	 */
 	public static void main(String[] args)
 	{
-		play("sample_abc/scale.abc");
+		play("sample_abc/prelude.abc");
 	}
 	public static void play(String file) {
-		// YOUR CODE HERE
 		try {
 			String fileContents = readFile(file, StandardCharsets.UTF_8);
 			MusicParser mp = new MusicParser(fileContents);
