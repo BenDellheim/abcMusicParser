@@ -15,6 +15,11 @@ public class MusicBody {
 		return this.bars;
 	}
 
+	/**
+	 * Takes the input file as an ArrayList<String> and splits
+	 * it into individual bars. 
+	 * @post: Object [bars] contains the music split into bars
+	 */
 	private void parseBars(ArrayList<String> contents)
 	{
 		for (int i=0; i < contents.size(); i++) {

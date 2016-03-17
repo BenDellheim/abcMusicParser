@@ -39,11 +39,13 @@ public class MusicParser {
 			if (contents[i].length() == 0) {
 				continue;
 			}
-			System.out.println(this.contents[i]);
-			String secondChar = this.contents[i].substring(1,2); // Get the second character
-
-			if(secondChar.equals(":")) {
-				continue;
+//			System.out.println(this.contents[i]);
+			
+			if(this.contents[i].length() >= 2)
+			{
+				// Check if 2nd character is a header command & skip it
+				String secondChar = this.contents[i].substring(1,2);
+				if(secondChar.equals(":")) {continue;}
 			}
 			
 			contents[i] = contents[i].replaceAll("\\s+","");
@@ -62,16 +64,17 @@ public class MusicParser {
 			contents[i] = contents[i].split("%", 2)[0];
 
 			// Skip blank lines
-			if (contents[i].length() == 0) {
-				continue;
-			}
+			if (contents[i].length() == 0) {continue;}
+			
+			// Get the first character
+			String firstChar = this.contents[i].substring(0,1);
 
-			String firstChar = this.contents[i].substring(0,1); // Get the first character
-
+			// First line must be the X field
 			if (i==0 && !this.contents[0].substring(0, 1).equals("X")) {
 				System.out.println("Not a valid header");
 			}
 
+			// Second line must be the T field
 			if (i==1 && !this.contents[1].substring(0, 1).equals("T")) {
 				System.out.println("Not a valid header");
 			}
@@ -82,7 +85,7 @@ public class MusicParser {
 			
 			headers.add(contents[i]);
 			
-			// The key (K) is the last field in the header
+			// Last line is the K (key) field
 			if (firstChar.equals("K")) {
 				break;
 			}

@@ -41,12 +41,13 @@ public class Main {
 						mp.getHeaders().getBPM(),
 						mp.getHeaders().getNoteLength()
 						);
-	            player = new SequencePlayer(120, 2);
+//	            player = new SequencePlayer(120, 2);
 
 	            ArrayList<String> bars = mp.getBody().getBars();
 	            int k=0;
 	            for(int i=0; i < bars.size();  i++) {
 	            	char notes[] = bars.get(i).toCharArray();
+	            	System.out.println(notes);
 	            	for(int j=0; j < notes.length; j++) {
 	            		if (Character.isUpperCase(notes[j])) {
 	            			player.addNote(new Pitch(notes[j]).toMidiNote(), k, 1);
