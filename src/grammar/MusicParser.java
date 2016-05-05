@@ -39,7 +39,6 @@ public class MusicParser {
 			if (contents[i].length() == 0) {
 				continue;
 			}
-//			System.out.println(this.contents[i]);
 			
 			if(this.contents[i].length() >= 2)
 			{
@@ -47,7 +46,8 @@ public class MusicParser {
 				String secondChar = this.contents[i].substring(1,2);
 				if(secondChar.equals(":")) {continue;}
 			}
-			
+
+			//Remove whitespace
 			contents[i] = contents[i].replaceAll("\\s+","");
 			
 			body.add(contents[i]);

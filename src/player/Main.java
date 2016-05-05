@@ -39,26 +39,49 @@ public class Main {
 			try {
 				SequencePlayer player = new SequencePlayer(
 						mp.getHeaders().getBPM(),
-						mp.getHeaders().getNoteLength()
-						);
-//	            player = new SequencePlayer(120, 2);
+						mp.getHeaders().getNoteLength());
 
 	            ArrayList<String> bars = mp.getBody().getBars();
 	            int k=0;
+	          System.out.println(bars.get(0));  
+	            // Iterate through every bar and add the notes to "player"
 	            for(int i=0; i < bars.size();  i++) {
 	            	char notes[] = bars.get(i).toCharArray();
-	            	System.out.println(notes);
 	            	for(int j=0; j < notes.length; j++) {
-	            		if (Character.isUpperCase(notes[j])) {
-	            			player.addNote(new Pitch(notes[j]).toMidiNote(), k, 1);
-	            		} else {
+	            		System.out.println(notes[j]);
+	            		switch(notes[j])
+	            		{
+	            		case 'z':
+	            		case 'Z':
+	            			break; // Skip rests
+	            		case 'a':
+	            		case 'b':
+	            		case 'c':
+	            		case 'd':
+	            		case 'e':
+	            		case 'f':
+	            		case 'g':
 	            			player.addNote(new Pitch(Character.toUpperCase(notes[j])).transpose(Pitch.OCTAVE).toMidiNote(), k, 1);
+		            		k++;
+	            			break;
+	            		case 'A':
+	            		case 'B':
+	            		case 'C':
+	            		case 'D':
+	            		case 'E':
+	            		case 'F':
+	            		case 'G':
+	            			player.addNote(new Pitch(notes[j]).toMidiNote(), k, 1);
+		            		k++;
+	            			break;
+            			default:
+            				break;
 	            		}
-	            		k++;
 	            	}
 	            }
 	            // play!
 	            player.play();
+	            System.out.println("Tada!");
 			} catch (MidiUnavailableException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
